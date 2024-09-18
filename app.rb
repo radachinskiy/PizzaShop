@@ -10,6 +10,9 @@ set :database, {adapter: "sqlite3", database: "pizzashop.db"}
 class Product < ActiveRecord::Base
 end
 
+class Order < ActiveRecord::Base
+end
+
 get '/' do
 	@products = Product.all 
 	erb :index
@@ -24,6 +27,7 @@ post '/cart' do
   @orders_input = params[:orders_input]
 
   #@items = parse_orders_input @orders_input
+
   if @orders_input.nil? || @orders_input.strip.empty?
     @items = []
   else
